@@ -1,0 +1,58 @@
+<head><meta name='theme-color' content='black'>
+      <meta name='apple-mobile-web-app-status-bar-style' content='black'>
+      <meta name='referrer' content='never'>
+      <meta name='referrer' content='no-referrer'>
+      <meta content='width=device-width, initial-scale=1' name='viewport'>
+      <title>Mega TelevisiÃ³n</title>
+      <script src='//cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js'></script>
+      <script src='//cdn.jsdelivr.net/npm/level-selector@latest/dist/level-selector.min.js'></script>
+      <script src='//cdn.jsdelivr.net/npm/clappr-chromecast-plugin@latest/dist/clappr-chromecast-plugin.min.js'></script>
+      <script src='//cdn.jsdelivr.net/npm/clappr-pip@latest/dist/clappr-pip.min.js'></script>
+      <script src='//cdn.jsdelivr.net/npm/dash-shaka-playback@latest/dist/dash-shaka-playback.min.js'></script>
+      <script src='//cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js'></script>
+      <script src='//cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js'></script>
+      <script src='//cdn.jsdelivr.net/npm/clappr-playback-rate-plugin@latest/dist/clappr-playback-rate-plugin.min.js'></script>
+      <script>
+          function getParameterByName(name) {
+              name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+              var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                  results = regex.exec(location.search);
+              return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+          }
+              var getURL  = getParameterByName('get');
+              var getLang = getParameterByName('lang');
+
+        if (getURL == "#") {alert('Vuelve a la pagina anterior');}
+        if (getURL == "") {location.href="https://cablegratis.online";}
+
+      </script>
+</head>
+
+<body bgcolor='black' style='margin:0' oncontextmenu='return false' onkeydown='return false'>
+    <div id="player"></div>
+    <script>
+        if (p2pml.hlsjs.Engine.isSupported()) {
+            var engine = new p2pml.hlsjs.Engine();
+ 
+            var player = new Clappr.Player({
+                parentId: "#player",
+                source: atob(getURL),
+                plugins: [LevelSelector, ChromecastPlugin, ClapprPip.PipButton, ClapprPip.PipPlugin, DashShakaPlayback, Clappr.MediaControl, PlaybackRatePlugin],
+                events: {onReady: function() {var plugin = this.getPlugin('click_to_pause'); plugin && plugin.disable();},},
+                width: '100%',
+                height: '100%',
+                autoPlay: false,
+                playback: {
+                    hlsjsConfig: {
+                        liveSyncDurationCount: 7,
+                        loader: engine.createLoaderClass()
+                    }
+                }
+            });
+ 
+            p2pml.hlsjs.initClapprPlayer(player);
+        } else {
+            document.write("Not supported :(");
+        }
+    </script> 
+</body>
