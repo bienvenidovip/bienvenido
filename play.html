@@ -41,7 +41,7 @@ console.log(result);
 </script>
 <script type="text/javascript">
 var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "https://cdn14.esp-cdn.xyz/json/sa.json?"  + Math.random().toString(36).substring(7), true);
+    xhttp.open("GET", "/json/sa.json?"  + Math.random().toString(36).substring(7), true);
     xhttp.send();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
