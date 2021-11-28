@@ -42,7 +42,48 @@ console.log(result);
 <script type="text/javascript">
 var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "https://bienvenidovip.github.io/json/sa.json?"  + Math.random().toString(36).substring(7), true);
-    xhttp.send();
+    xhttp.send();<script src="//cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
+<script src="//cdn.jsdelivr.net/clappr.level-selector/latest/level-selector.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+<div id="player"></div>
+<script>
+var referrer =  document.referrer;
+   if((referrer.indexOf("cablegratis.online") > -1) || /iPad|iPod|BlackBerry|IEMobile|webOS|Opera Mini/i.test(navigator.userAgent)) {
+
+      var player = new Clappr.Player(
+        {
+          source: 'https://dtv-latam-abc.akamaized.net/dash/live/700426/dtv/DTV-ABC-dtvsportsargentina/master.mpd',
+          height: "100%",
+ width: "100%",
+ poster: '',
+ watermark: "", position: 'top-right',
+          plugins: [DashShakaPlayback, LevelSelector],
+          shakaConfiguration: {
+            
+            drm: {
+    clearKeys: {
+      // 'key-id-in-hex': 'key-in-hex',
+      '8cba8a1289c5ded4079bce1b00003f78': 'adfd4c6d13f9e22d29f320737a7e32d4',
+
+   }
+  },
+            preferredAudioLanguage: 'pt-BR',
+            streaming: {
+              rebufferingGoal: 15
+            }
+          },
+          shakaOnBeforeLoad: function(shaka_player) {
+            // shaka_player.getNetworkingEngine().registerRequestFilter() ...
+          },
+          parentId: '#player'
+        });
+}
+document.body.addEventListener('click', openWindow);
+eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('(3(){(3 a(){8{(3 b(2){7((\'\'+(2/2)).6!==1||2%5===0){(3(){}).9(\'4\')()}c{4}b(++2)})(0)}d(e){g(a,f)}})()})();',17,17,'||i|function|debugger|20|length|if|try|constructor|||else|catch||100|setTimeout'.split('|'),0,{}))
+document.oncontextmenu = function(){return false}
+    </script>
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             var jsonResponse = JSON.parse(xhttp.responseText);
